@@ -7,7 +7,7 @@ let tasksEl = document.getElementById('tasks');
 
 // Global Variables 
 let tasks = loadTasks();
-displayAll()
+displayAll();
 
 
 // Go Btn - Menu Listener
@@ -21,6 +21,7 @@ function goBtnHandler() {
     addTask();
   } else if (selection === 'toggle') {
     toggleTask();
+
   } else if (selection === 'remove') {
     removeTask();
   } else if (selection === 'clear') {

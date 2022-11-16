@@ -21,7 +21,6 @@ function goBtnHandler() {
     addTask();
   } else if (selection === 'toggle') {
     toggleTask();
-
   } else if (selection === 'remove') {
     removeTask();
   } else if (selection === 'clear') {
@@ -43,19 +42,30 @@ function toggleTask() {
   let index = +prompt('Enter # of task: ');
   let task = tasks[index];
   if (task.completed === ''){
-    tasks.completed = 'completed';
+    task.completed = 'completed';
   } else {
     task.completed = '';
   }
+  saveTask();
   displayAll();
 }
 
 function removeTask() {
-  console.log('Remove Task');
+  let index = +prompt("Enter # of task: ")
+  if (index >=0 && index < tasks.length) {
+    //Valid Index -> Remove 
+    tasks.splice(index, 1);
+    saveTask();
+    displayAll();
+  } else {
+    alert('Invalid Task #');
+  }
 }
 
 function clearAll() {
-  console.log('Clear All');
+  tasks = [];
+  saveTask();
+  displayAll();
 }
 
 // HELPER Functions 
@@ -86,7 +96,7 @@ function getTaskHTMLStr(task,i){
 }
 
 function saveTask(){
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function loadTasks(){
